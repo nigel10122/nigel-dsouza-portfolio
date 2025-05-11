@@ -12,7 +12,7 @@ import "react-popupbox/dist/react-popupbox.css";
 
 
 
-const Pofrfolio = () => {
+const Portfolio = () => {
 
   // Netflix
   const openPopupboxNetflix = () => {
@@ -143,4 +143,4 @@ const Pofrfolio = () => {
   )
 }
 
-export default Pofrfolio;
+export default Portfolio;
