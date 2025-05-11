@@ -22,135 +22,96 @@ const Contacts = () => {
         description: data.description
       },
       userID
-    )
+    );
     r.target.reset();
-  }
+  };
 
   const sendEmail = (serviceID, templateID, variables, userID) => {
-    emailjs.send(serviceID, templateID, variables, userID)
+    emailjs
+      .send(serviceID, templateID, variables, userID)
       .then(() => {
         setSuccessMessage("Form sent successfully! I'll contact you as soon as possible.");
-      }).catch(err => console.error(`Something went wrong ${err}`));
-  }
+      })
+      .catch((err) => console.error(`Something went wrong ${err}`));
+  };
 
   return (
-    <div id="contacts" className="contacts">
+    <div id="contacts" className="contacts" style={{ backgroundColor: '#f9f9f9', padding: '50px 0' }}>
       <div className="text-center">
-        <h1>contact me</h1>
-      
-        <span className="success-message">{successMessage}</span>
+        <h1 style={{ color: '#f9ab00', fontWeight: 'bold' }}>Contact Me</h1>
+        <span className="success-message" style={{ color: 'green' }}>{successMessage}</span>
       </div>
-      <div className="container">
+      <div className="container mt-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row">
-            <div className="col-md-6 col-xs-12">
-              {/* NAME INPUT */}
-              <div className="text-center">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Name"
-                  name="name"
-                  ref={
-                    register({
-                      required: "Please enter your name",
-                      maxLength: {
-                        value: 20,
-                        message: "Please enter a name with fewer than 20 characters"
-                      }
-                    })
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Name"
+                name="name"
+                ref={register({
+                  required: "Please enter your name",
+                  maxLength: {
+                    value: 20,
+                    message: "Please enter a name with fewer than 20 characters"
                   }
-                />
-                <div className="line"></div>
-              </div>
-              <span className="error-message">
-                {errors.name && errors.name.message}
-              </span>
-              {/* PHONE INPUT */}
-              <div className="text-center">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Phone Number"
-                  name="phone"
-                  ref={
-                    register({
-                      required: "Please add your phone number",
-                    })
+                })}
+              />
+              <span className="error-message text-danger">{errors.name && errors.name.message}</span>
+
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Phone Number"
+                name="phone"
+                ref={register({ required: "Please add your phone number" })}
+              />
+              <span className="error-message text-danger">{errors.phone && errors.phone.message}</span>
+
+              <input
+                type="email"
+                className="form-control mb-3"
+                placeholder="Email"
+                name="email"
+                ref={register({
+                  required: "Please provide your email",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address"
                   }
-                />
-                <div className="line"></div>
-              </div>
-              <span className="error-message">
-                {errors.phone && errors.phone.message}
-              </span>
-              {/* EMAIL INPUT */}
-              <div className="text-center">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  ref={
-                    register({
-                      required: "Please provide you email",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "invalid Email"
-                      }
-                    })
-                  }
-                />
-                <div className="line"></div>
-              </div>
-              <span className="error-message">
-                {errors.email && errors.email.message}
-              </span>
-              {/* SUBJECT INPUT */}
-              <div className="text-center">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Subject"
-                  name="subject"
-                  ref={
-                    register({
-                      required: "OOPS, you forget to add the subject.",
-                    })
-                  }
-                />
-                <div className="line"></div>
-              </div>
-              <span className="error-message">
-                {errors.subject && errors.subject.message}
-              </span>
+                })}
+              />
+              <span className="error-message text-danger">{errors.email && errors.email.message}</span>
+
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Subject"
+                name="subject"
+                ref={register({ required: "Please add a subject" })}
+              />
+              <span className="error-message text-danger">{errors.subject && errors.subject.message}</span>
             </div>
-            <div className="col-md-6 col-xs-12">
-              {/* DESCRIPTION */}
-              <div className="text-center">
-                <textarea
-                  type="text"
-                  className="form-control"
-                  placeholder="Description"
-                  name="description"
-                  ref={
-                    register({
-                      required: "Please describe shortly your project needs...",
-                    })
-                  }
-                ></textarea>
-                <div className="line"></div>
-              </div>
-              <span className="error-message">
-                {errors.description && errors.description.message}
-              </span>
-              <button className="btn-main-offer contact-btn" type="submit">contact me</button>
+
+            <div className="col-md-6">
+              <textarea
+                rows="8"
+                className="form-control mb-3"
+                placeholder="Describe your project needs..."
+                name="description"
+                ref={register({ required: "Please describe your project" })}
+              ></textarea>
+              <span className="error-message text-danger">{errors.description && errors.description.message}</span>
+              <button className="btn btn-warning btn-block font-weight-bold mt-3" type="submit">
+                Send Message
+              </button>
             </div>
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Contacts;

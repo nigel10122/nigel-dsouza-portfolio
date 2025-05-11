@@ -4,48 +4,39 @@ const Experience = () => {
   return (
     <div id="experience" className="experience">
       <div className="d-flex justify-content-center my-5">
-        <h1>experience</h1>
+        <h1>Experience</h1>
       </div>
       <div className="container experience-wrapper">
+
         <div className="timeline-block timeline-block-right">
           <div className="marker"></div>
           <div className="timeline-content">
-            <h3>Excel Academy
-              <br></br>
-              Lecturer
-              <br></br>
-              2016-2018
+            <h3>Fidelity Investments<br />
+              Tech Lead / Principal Software Engineer<br />
+              2024–Present
             </h3>
-  
-            <p>Delivered lectures of Computer Science to grade XI and XII. Gave extra attention to weak students for better understanding. 
-               Met parents to discuss students’ progress and actions for improvement. Set exam papers/tests for mid-term and final exams.
-               Prepared easy-to-understand lessons of Math and Physics for the students.
+            <p>
+              Leading cloud infrastructure and full-stack development for Fidelity’s Alternative Investments Platform. Delivered critical AWS infrastructure using Terraform, developed Spring Boot APIs and Node.js Lambdas, built disaster recovery frameworks, and orchestrated CI/CD pipelines using Jenkins. Act as a cross-squad leader guiding DevOps enablement, quality engineering, and architecture planning.
             </p>
           </div>
         </div>
-        {/* - */}
+
         <div className="timeline-block timeline-block-left">
           <div className="marker"></div>
           <div className="timeline-content">
-          <h3>Beta Consultancy 
-              <br></br>
-              Website Developer & Digital Marketer
-              <br></br>
-              2017-2019
+            <h3>Capgemini (Client: Fidelity Investments)<br />
+              Software Consultant<br />
+              2021–2024 
             </h3>
-            <p>Designed and developed appealing websites for the clients as per their requirements. Delivered customer service for every Website, ensuring maximum client satisfaction. 
-               Handled all social media accounts, such as Facebook, Instagram, and Twitter. Managed operations related to digital marketing for various handcrafted products. 
-               Sold company products on Indian and international sites. Coordinated with NGOs, such as Care Foundation and OOO Farms, as part of corporate social responsibility. 
-               Planned and organized charity events as well as acted as a liaison for art exhibitions. Prepared and finalized catalogs and brochures for marketing. 
-               Updated clients on market conditions and new offerings. Tested websites using Advance Automation Testing by writing Selenium Scripts with Model-View-Controller (Eclipse JSP).
-               Gained comprehensive skills in website development, automation testing in Selenium script writing, project management, and client interaction.
+            <p>
+              Contributed to API development, batch job optimization, and cloud automation in a fast-paced financial environment. Built reusable Spring components and AWS modules. Worked closely with Fidelity teams, which led to a direct transition as full-time tech lead after visa constraints were resolved through staffing partners.
             </p>
           </div>
         </div>
-      
+
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Experience;

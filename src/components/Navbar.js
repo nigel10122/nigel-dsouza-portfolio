@@ -8,10 +8,31 @@ const Navbar = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
+  // Close Bootstrap dropdown after clicking a link
+  const closeDropdown = () => {
+    const dropdown = document.getElementById("navbarSupportedContent");
+    if (dropdown && dropdown.classList.contains("show")) {
+      dropdown.classList.remove("show");
+    }
+
+    const backdrop = document.querySelector(".navbar-backdrop");
+    if (backdrop) {
+      backdrop.remove();
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
       <div className="container">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <FontAwesomeIcon icon={faBars} style={{ color: "#fff" }} />
         </button>
 
@@ -22,29 +43,110 @@ const Navbar = () => {
             <li className="nav-item dropdown">
               {isHomePage ? (
                 <>
-                  <a className="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="homeDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Home
                   </a>
                   <div className="dropdown-menu" aria-labelledby="homeDropdown">
-                    <ScrollLink smooth={true} to="home" className="dropdown-item">Home</ScrollLink>
-                    <ScrollLink smooth={true} to="about" offset={-110} className="dropdown-item">About Me</ScrollLink>
-                    <ScrollLink smooth={true} to="skills" offset={-110} className="dropdown-item">Skills</ScrollLink>
-                    <ScrollLink smooth={true} to="education" offset={-110} className="dropdown-item">Education</ScrollLink>
-                    <ScrollLink smooth={true} to="services" offset={-110} className="dropdown-item">Services</ScrollLink>
-                    <ScrollLink smooth={true} to="experience" offset={-110} className="dropdown-item">Experience</ScrollLink>
-                    <ScrollLink smooth={true} to="contacts" offset={-110} className="dropdown-item">Contact Me</ScrollLink>
+                    <ScrollLink
+                      to="home"
+                      smooth={true}
+                      duration={500}
+                      offset={-110}
+                      spy={true}
+                      className="dropdown-item"
+                      onClick={closeDropdown}
+                    >
+                      Home
+                    </ScrollLink>
+                    <ScrollLink
+                      to="about"
+                      smooth={true}
+                      duration={500}
+                      offset={-110}
+                      spy={true}
+                      className="dropdown-item"
+                      onClick={closeDropdown}
+                    >
+                      About Me
+                    </ScrollLink>
+                    <ScrollLink
+                      to="skills"
+                      smooth={true}
+                      duration={500}
+                      offset={-110}
+                      spy={true}
+                      className="dropdown-item"
+                      onClick={closeDropdown}
+                    >
+                      Skills
+                    </ScrollLink>
+                    <ScrollLink
+                      to="education"
+                      smooth={true}
+                      duration={500}
+                      offset={-110}
+                      spy={true}
+                      className="dropdown-item"
+                      onClick={closeDropdown}
+                    >
+                      Education
+                    </ScrollLink>
+                    <ScrollLink
+                      to="services"
+                      smooth={true}
+                      duration={500}
+                      offset={-110}
+                      spy={true}
+                      className="dropdown-item"
+                      onClick={closeDropdown}
+                    >
+                      Services
+                    </ScrollLink>
+                    <ScrollLink
+                      to="experience"
+                      smooth={true}
+                      duration={500}
+                      offset={-110}
+                      spy={true}
+                      className="dropdown-item"
+                      onClick={closeDropdown}
+                    >
+                      Experience
+                    </ScrollLink>
+                    <ScrollLink
+                      to="contacts"
+                      smooth={true}
+                      duration={500}
+                      offset={-110}
+                      spy={true}
+                      className="dropdown-item"
+                      onClick={closeDropdown}
+                    >
+                      Contact Me
+                    </ScrollLink>
                   </div>
                 </>
               ) : (
-                <RouterLink to="/" className="nav-link">Home</RouterLink>
+                <RouterLink to="/" className="nav-link">
+                  Home
+                </RouterLink>
               )}
             </li>
 
             {/* Always visible route */}
             <li className="nav-item">
-              <RouterLink to="/extraordinary" className="nav-link">Extraordinary-Abilities</RouterLink>
+              <RouterLink to="/extraordinary" className="nav-link">
+                Extraordinary-Abilities
+              </RouterLink>
             </li>
-
           </ul>
         </div>
       </div>
