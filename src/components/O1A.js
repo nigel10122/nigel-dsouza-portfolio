@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom';
 
 const O1A = () => {
   const sections = [
-    { title: 'Authorship', path: '/o1a/authorship' },
-    { title: 'Media Coverage', path: '/o1a/media' },
-    { title: 'Letters of Recommendation', path: '/o1a/lors' },
-    { title: 'Critical Employment', path: '/o1a/employment' },
-    { title: 'High Salary', path: '/o1a/salary' },
-    { title: 'Original Contributions', path: '/o1a/contributions' },
-    { title: 'Judging / Peer Review', path: '/o1a/judging' },
-    { title: 'Professional Memberships', path: '/o1a/memberships' }
+    { title: 'Authorship', path: '/authorship' },
+    { title: 'Media Coverage', path: '/media' },
+    { title: 'Letters of Recommendation', path: '/lors' },
+    { title: 'Critical Employment', path: '/employment' },
+    { title: 'High Salary', path: '/salary' },
+    { title: 'Original Contributions', path: '/contributions' },
+    { title: 'Judging / Peer Review', path: '/judging' },
+    { title: 'Professional Memberships', path: '/memberships' }
   ];
 
   return (
     <section id="extraordinary-abilities" style={{ padding: '3rem 2rem', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '1rem', color: '#333' }}>Extraordinary Abilities (O1-A Portfolio)</h1>
+      <h1 style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '2rem', color: '#333' }}>Extraordinary Abilities Requirements (O1-A Portfolio)</h1>
 
       <div className="container">
         <div className="row">

@@ -12,6 +12,7 @@ import Contacts from "./components/Contacts";
 import Footer from "./components/Footer";
 import Education from './components/Education';
 import O1A from './components/O1A';
+import Authorship from './components/Authorship';
 
 const MainContent = () => {
   const location = useLocation();
@@ -47,6 +48,7 @@ const MainContent = () => {
           </div>
         )} />
         <Route path="/extraordinary" component={O1A} />
+        <Route path="/authorship" component={Authorship}/>
       </Switch>
     </>
   );
