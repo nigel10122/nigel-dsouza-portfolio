@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import Education from './components/Education';
 import O1A from './components/O1A';
 import Authorship from './components/Authorship';
+import ArticlePage from './components/ArticlePage';
 
 const MainContent = () => {
   const location = useLocation();
@@ -34,22 +35,26 @@ const MainContent = () => {
 
       <Navbar />
 
-      <Switch>
-        <Route exact path="/" render={() => (
-          <div className="main-content" style={{ position: 'relative', zIndex: 1, backgroundColor: '#fff' }}>
-            <div id="home"><Header /></div>
-            <div id="about"><AboutMe /></div>
-            <div id="skills"><Skills /></div>
-            <div id="education"><Education /></div>
-            <div id="services"><Services /></div>
-            <div id="experience"><Experience /></div>
-            <div id="contacts"><Contacts /></div>
-            <Footer />
-          </div>
-        )} />
-        <Route path="/extraordinary" component={O1A} />
-        <Route path="/authorship" component={Authorship}/>
-      </Switch>
+<Switch>
+  <Route exact path="/" render={() => (
+    <div className="main-content" style={{ position: 'relative', zIndex: 1, backgroundColor: '#fff' }}>
+      <div id="home"><Header /></div>
+      <div id="about"><AboutMe /></div>
+      <div id="skills"><Skills /></div>
+      <div id="education"><Education /></div>
+      <div id="services"><Services /></div>
+      <div id="experience"><Experience /></div>
+      <div id="contacts"><Contacts /></div>
+      <Footer />
+    </div>
+  )} />
+  
+  {/* 👇 Important: Place the more specific route first */}
+  <Route path="/authorship/:slug" component={ArticlePage} />
+  <Route exact path="/authorship" component={Authorship} />
+  <Route path="/extraordinary" component={O1A} />
+</Switch>
+
     </>
   );
 };
