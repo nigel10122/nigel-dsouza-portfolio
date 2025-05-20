@@ -13,7 +13,9 @@ import Footer from "./components/Footer";
 import Education from './components/Education';
 import O1A from './components/O1A';
 import Authorship from './components/Authorship';
-import ArticlePage from './components/ArticlePage';
+import DocumentEditor from './components/DocumentEditor';
+import MediaCoverage from './components/MediaCoverage';
+import LettersofRecomendation from './components/Lor';
 
 const MainContent = () => {
   const location = useLocation();
@@ -50,8 +52,10 @@ const MainContent = () => {
   )} />
   
   {/* 👇 Important: Place the more specific route first */}
-  <Route path="/authorship/:slug" component={ArticlePage} />
+  <Route path="/:category/:slug" component={DocumentEditor} />
   <Route exact path="/authorship" component={Authorship} />
+  <Route exact path="/media-coverage" component={MediaCoverage} />
+  <Route exact path="/lors" component={LettersofRecomendation} />
   <Route path="/extraordinary" component={O1A} />
 </Switch>
 

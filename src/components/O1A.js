@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const O1A = () => {
   const sections = [
-    { title: 'Authorship', path: '/authorship' },
-    { title: 'Media Coverage', path: '/media' },
+    { title: 'Authorship', path: '/authorship', style: "blue"},
+    { title: 'Media Coverage', path: '/media-coverage' },
     { title: 'Letters of Recommendation', path: '/lors' },
     { title: 'Critical Employment', path: '/employment' },
     { title: 'High Salary', path: '/salary' },

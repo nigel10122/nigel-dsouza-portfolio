@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
-const Authorship = () => {
+const MediaCoverage = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'authorship'));
+        const querySnapshot = await getDocs(collection(db, 'media-coverage'));
         const fetchedArticles = querySnapshot.docs.map(doc => ({
           title: doc.data().title || doc.id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-          path: `/authorship/${doc.id}`
+          path: `/media-coverage/${doc.id}`
         }));
         setArticles(fetchedArticles);
       } catch (error) {
@@ -25,9 +25,9 @@ const Authorship = () => {
 
   return (
     <div style={{ marginTop: "2rem" }}>
-      <section className="authorship-section" style={{ padding: '3rem 2rem', backgroundColor: '#fdfdfd' }}>
+      <section className="media-coverage-section" style={{ padding: '3rem 2rem', backgroundColor: '#fdfdfd' }}>
         <h1 style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '2rem', color: '#212529' }}>
-          Authorship Collection
+          media-coverage Collection
         </h1>
 
         <div className="container">
@@ -56,4 +56,4 @@ const Authorship = () => {
   );
 };
 
-export default Authorship;
+export default MediaCoverage;
