@@ -5,6 +5,8 @@ import { db } from '../config/firebase';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import html2pdf from 'html2pdf.js';
+import htmlDocx from 'html-docx-js/dist/html-docx';
 
 const DocumentEditorPage = () => {
   const { category, slug } = useParams();
@@ -37,9 +39,41 @@ const DocumentEditorPage = () => {
     setIsEditing(false);
   };
 
+const handleDownloadPDF = () => {
+  const element = document.querySelector('.markdown-preview');
+
+  const opt = {
+    margin:       0.5,
+    filename:     `${slug}.pdf`,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(element).save();
+};
+
+  const handleDownloadDocx = () => {
+    const preview = document.querySelector('.markdown-preview');
+    const html = `<html><head><meta charset="utf-8"></head><body>${preview.innerHTML}</body></html>`;
+    const blob = htmlDocx.asBlob(html);
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${slug}.docx`;
+    link.click();
+  };
+
+  const handleDownloadMarkdown = () => {
+    const blob = new Blob([markdown], { type: 'text/markdown' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `${slug}.md`;
+    link.click();
+  };
+
   return (
     <div className="container py-5" style={{ marginTop: '2rem' }}>
-      {/* Header Area */}
+      {/* Title + author + links */}
       <div className="d-flex justify-content-between align-items-start mb-4">
         <div>
           <h1 style={{ fontWeight: 600, fontSize: '2.25rem' }}>{title || 'Untitled Document'}</h1>
@@ -48,7 +82,6 @@ const DocumentEditorPage = () => {
               By {author}
             </h4>
           )}
-
           {publishedUrls.length > 0 && (
             <div className="mt-3">
               <h6 style={{ fontWeight: 500, fontSize: '1.1rem' }}>Published On:</h6>
@@ -65,23 +98,36 @@ const DocumentEditorPage = () => {
           )}
         </div>
 
-        {/* Edit Button */}
+        {/* Edit / Save buttons */}
         {isEditable && (
           <div>
             {!isEditing ? (
-              <button className="btn btn-warning" onClick={() => setIsEditing(true)}>
+              <button className="btn btn-warning mb-2" onClick={() => setIsEditing(true)}>
                 ✏️ Edit
               </button>
             ) : (
-              <button className="btn btn-success" onClick={handleSave}>
+              <button className="btn btn-success mb-2" onClick={handleSave}>
                 ✅ Save
               </button>
+            )}
+            {!isEditing && (
+              <div>
+                <button className="btn btn-outline-secondary me-2" onClick={handleDownloadPDF}>
+                  📄 PDF
+                </button>
+                <button className="btn btn-outline-secondary me-2" onClick={handleDownloadDocx}>
+                  📄 DOCX
+                </button>
+                <button className="btn btn-outline-secondary" onClick={handleDownloadMarkdown}>
+                  📄 Markdown
+                </button>
+              </div>
             )}
           </div>
         )}
       </div>
 
-      {/* Markdown Editor / Preview */}
+      {/* Markdown editor or preview */}
       {isEditing ? (
         <textarea
           className="form-control"
