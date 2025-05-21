@@ -39,19 +39,19 @@ const DocumentEditorPage = () => {
     setIsEditing(false);
   };
 
-const handleDownloadPDF = () => {
-  const element = document.querySelector('.markdown-preview');
+  const handleDownloadPDF = () => {
+    const element = document.querySelector('.markdown-preview');
 
-  const opt = {
-    margin:       0.5,
-    filename:     `${slug}.pdf`,
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    const opt = {
+      margin: 0.5,
+      filename: `${slug}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
   };
-
-  html2pdf().set(opt).from(element).save();
-};
 
   const handleDownloadDocx = () => {
     const preview = document.querySelector('.markdown-preview');
@@ -96,7 +96,21 @@ const handleDownloadPDF = () => {
               </ul>
             </div>
           )}
+
+          
+        <div>
+          <button className="btn btn-outline-secondary me-2" onClick={handleDownloadPDF}>
+            📄 PDF
+          </button>
+          <button className="btn btn-outline-secondary me-2" onClick={handleDownloadDocx}>
+            📄 DOCX
+          </button>
+          <button className="btn btn-outline-secondary" onClick={handleDownloadMarkdown}>
+            📄 Markdown
+          </button>
         </div>
+        </div>
+
 
         {/* Edit / Save buttons */}
         {isEditable && (
@@ -110,22 +124,11 @@ const handleDownloadPDF = () => {
                 ✅ Save
               </button>
             )}
-            {!isEditing && (
-              <div>
-                <button className="btn btn-outline-secondary me-2" onClick={handleDownloadPDF}>
-                  📄 PDF
-                </button>
-                <button className="btn btn-outline-secondary me-2" onClick={handleDownloadDocx}>
-                  📄 DOCX
-                </button>
-                <button className="btn btn-outline-secondary" onClick={handleDownloadMarkdown}>
-                  📄 Markdown
-                </button>
-              </div>
-            )}
           </div>
         )}
       </div>
+
+      
 
       {/* Markdown editor or preview */}
       {isEditing ? (
