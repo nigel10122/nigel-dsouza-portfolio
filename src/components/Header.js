@@ -3,7 +3,7 @@ import Typed from "react-typed";
 import { Link } from "react-scroll";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Resume from '../assets/Resume.docx'
+import Resume from '../assets/Nigel_Dsouza_Resume.pdf'
 
 
 
