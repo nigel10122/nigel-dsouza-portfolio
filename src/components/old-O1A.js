@@ -1,23 +1,23 @@
+// src/components/O1A.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
-const O1A = () => {
+const oldO1A = () => {
   const sections = [
     { title: 'Authorship', path: '/authorship', key: 'authorship' },
     { title: 'Media Coverage', path: '/media-coverage', key: 'media-coverage' },
-    { title: 'Letters of Recommendation', path: '/lors', key: 'letters-of-recomendation' },
+    { title: 'Letters of Recommendation', path: '/lors', key: 'letters-of-recommendation' },
     { title: 'Critical Employment', path: '/employment', key: 'employment' },
     { title: 'High Salary', path: '/salary', key: 'salary' },
     { title: 'Original Contributions', path: '/contributions', key: 'contributions' },
     { title: 'Judging / Peer Review', path: '/judging', key: 'judging' },
-    { title: 'Professional Memberships & Awards', path: '/memberships', key: 'memberships' }
+    { title: 'Professional Memberships', path: '/memberships', key: 'memberships' }
   ];
 
   const [evidenceData, setEvidenceData] = useState([]);
   const [docCounts, setDocCounts] = useState({});
-  const [sectionStatus, setSectionStatus] = useState({});
 
   useEffect(() => {
     const fetchEvidence = async () => {
@@ -35,20 +35,45 @@ const O1A = () => {
       setDocCounts(counts);
     };
 
-    const fetchStatuses = async () => {
-      const statuses = {};
-      for (let section of sections) {
-        const ref = doc(db, 'requirement-progress', section.key);
-        const snap = await getDoc(ref);
-        statuses[section.key] = snap.exists() ? snap.data().status : 'Not Started';
-      }
-      setSectionStatus(statuses);
-    };
-
     fetchEvidence();
     fetchDocCounts();
-    fetchStatuses();
   }, []);
+
+  const getSectionStatus = (key) => {
+    const count = docCounts[key] || 0;
+    let status = "Not Started";
+
+    switch (key) {
+      case "authorship":
+        status = count >= 5 ? "Complete" : count > 0 ? "In Progress" : "Not Started";
+        break;
+      case "media-coverage":
+        status = count >= 3 ? "Complete" : count > 0 ? "In Progress" : "Not Started";
+        break;
+      case "letters-of-recommendation":
+        status = count >= 6 ? "Complete" : count > 0 ? "In Progress" : "Not Started";
+        break;
+      case "employment":
+        status = count > 0 ? "Complete" : "Not Met";
+        break;
+      case "salary":
+        status = count > 0 ? "In Progress" : "Not Met";
+        break;
+      case "contributions":
+        status = count >= 2 ? "Complete" : count > 0 ? "In Progress" : "Not Started";
+        break;
+      case "judging":
+        status = count > 0 ? "In Progress" : "Not Met";
+        break;
+      case "memberships":
+        status = count > 0 ? "In Progress" : "Not Met";
+        break;
+      default:
+        status = "Not Started";
+    }
+
+    return status;
+  };
 
   const getStatusBadge = (status) => {
     const colorMap = {
@@ -92,7 +117,7 @@ const O1A = () => {
       <div className="container mb-5">
         <div className="row">
           {sections.map((section, index) => {
-            const status = sectionStatus[section.key] || 'Not Started';
+            const status = getSectionStatus(section.key);
             const count = docCounts[section.key] || 0;
 
             return (
@@ -152,4 +177,4 @@ const O1A = () => {
   );
 };
 
-export default O1A;
+export default oldO1A;

@@ -5,6 +5,7 @@ import { db } from '../config/firebase';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+// eslint-disable-next-line
 import html2pdf from 'html2pdf.js';
 import htmlDocx from 'html-docx-js/dist/html-docx';
 
@@ -16,6 +17,8 @@ const DocumentEditorPage = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishedUrls, setPublishedUrls] = useState([]);
+  const [documentUrl, setDocumentUrl] =  useState('');
+
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -28,6 +31,7 @@ const DocumentEditorPage = () => {
         setTitle(data.title || '');
         setAuthor(data.author || '');
         setPublishedUrls(data.publishedUrls || []);
+        setDocumentUrl(data.document || '');
       }
     };
     fetchContent();
@@ -97,19 +101,31 @@ const DocumentEditorPage = () => {
             </div>
           )}
 
-          
-        <div>
-          <button className="btn btn-outline-secondary me-2" onClick={handleDownloadPDF}>
-            📄 PDF
-          </button>
-          <button className="btn btn-outline-secondary me-2" onClick={handleDownloadDocx}>
-            📄 DOCX
-          </button>
-          <button className="btn btn-outline-secondary" onClick={handleDownloadMarkdown}>
-            📄 Markdown
-          </button>
+
+          <div>
+            <button className="btn btn-outline-secondary me-2" onClick={handleDownloadPDF}>
+              📄 PDF
+            </button>
+            <button className="btn btn-outline-secondary me-2" onClick={handleDownloadDocx}>
+              📄 DOCX
+            </button>
+            <button className="btn btn-outline-secondary" onClick={handleDownloadMarkdown}>
+              📄 Markdown
+            </button>
+          </div>
         </div>
-        </div>
+
+        {documentUrl && (
+          <a
+            href={documentUrl}
+            className="btn btn-outline-info ms-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+          >
+            ⬇️ Download Latex Formatted
+          </a>
+        )}
 
 
         {/* Edit / Save buttons */}
@@ -128,7 +144,7 @@ const DocumentEditorPage = () => {
         )}
       </div>
 
-      
+
 
       {/* Markdown editor or preview */}
       {isEditing ? (
