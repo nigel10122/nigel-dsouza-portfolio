@@ -13,7 +13,8 @@ const O1A = () => {
     { title: 'High Salary', path: '/salary', key: 'salary' },
     { title: 'Original Contributions', path: '/contributions', key: 'contributions' },
     { title: 'Judging / Peer Review', path: '/judging', key: 'judging' },
-    { title: 'Professional Memberships & Awards', path: '/memberships', key: 'memberships' }
+    { title: 'Professional Memberships', path: '/memberships', key: 'memberships' },
+    { title: 'Prizes/Awards', path: '/awards', key: 'awards' }
   ];
 
   const [evidenceData, setEvidenceData] = useState([]);

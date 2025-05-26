@@ -18,7 +18,7 @@ const DocumentEditorPage = () => {
   const [author, setAuthor] = useState('');
   const [publishedUrls, setPublishedUrls] = useState([]);
   const [documentUrl, setDocumentUrl] =  useState('');
-
+  const [proof, setProof] = useState('');
 
   useEffect(() => {
     const fetchContent = async () => {
@@ -32,6 +32,7 @@ const DocumentEditorPage = () => {
         setAuthor(data.author || '');
         setPublishedUrls(data.publishedUrls || []);
         setDocumentUrl(data.document || '');
+        setProof(data.proof || '');
       }
     };
     fetchContent();
@@ -115,6 +116,7 @@ const DocumentEditorPage = () => {
           </div>
         </div>
 
+        <div>
         {documentUrl && (
           <a
             href={documentUrl}
@@ -123,9 +125,22 @@ const DocumentEditorPage = () => {
             rel="noopener noreferrer"
             download
           >
-            ⬇️ Download Latex Formatted
+            ⬇️ Download Original Documnet
           </a>
         )}
+
+        {proof && (
+          <a
+            href={proof}
+            className="btn btn-outline-info ms-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+          >
+            ⬇️ Download Proof ZIP
+          </a>
+        )}
+        </div> 
 
 
         {/* Edit / Save buttons */}

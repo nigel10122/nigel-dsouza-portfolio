@@ -44,9 +44,10 @@ const MainContent = () => {
       <div id="about"><AboutMe /></div>
       <div id="skills"><Skills /></div>
       <div id="education"><Education /></div>
+        <div id="experience"><Experience /></div>
       <div id="services"><Services /></div>
-      <div id="experience"><Experience /></div>
-      <div id="contacts"><Contacts /></div>
+
+      {/* <div id="contacts"><Contacts /></div> */}
       <Footer />
     </div>
   )} />

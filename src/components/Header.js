@@ -34,9 +34,9 @@ const Header = () => {
         <Col>
         <a href="https://github.com/nigel10122" target="_blank" rel="noreferrer" offset={-110} className="btn-main-offer">GITHUB</a>
         </Col>
-        <Col>
+        {/* <Col>
         <Link smooth={true} to="contacts" offset={-110} className="btn-main-offer">contact</Link>
-        </Col>
+        </Col> */}
         
         </Row>
       </div>
