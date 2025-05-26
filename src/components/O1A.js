@@ -1,3 +1,4 @@
+// src/components/O1A.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
@@ -66,23 +67,13 @@ const O1A = () => {
         return "badge bg-success";
       case "Reached out":
         return "badge bg-info text-dark";
-      case "Not started":
+      case "Not Started":
         return "badge bg-secondary";
       case "Not Met":
         return "badge bg-danger";
       default:
         return "badge bg-light text-dark";
     }
-  };
-
-  const getTypeColor = (type) => {
-    const colors = {
-      'Media': 'badge bg-purple',
-      'Judging': 'badge bg-warning text-dark',
-      'Prizes': 'badge bg-danger',
-      'Research': 'badge bg-primary',
-    };
-    return colors[type] || 'badge bg-light text-dark';
   };
 
   return (
@@ -128,20 +119,38 @@ const O1A = () => {
         <table className="table table-hover table-bordered">
           <thead className="table-light">
             <tr>
-              <th>Organization</th>
-              <th>Status</th>
-              <th>Type of Evidence</th>
+              <th style={{ width: "15%" }}>Type of Evidence</th>
+              <th style={{ width: "10%" }}>Status</th>
+              <th style={{ width: "40%" }}>Pending Tasks</th>
+              <th style={{ width: "35%" }}>Completed</th>
             </tr>
           </thead>
           <tbody>
             {evidenceData.map((item, index) => (
               <tr key={index}>
-                <td><strong>{item.org}</strong></td>
+                <td><strong>{item.type}</strong></td>
                 <td><span className={getStatusColor(item.status)}>{item.status}</span></td>
                 <td>
-                  {item.type?.map((t, i) => (
-                    <span key={i} className={`${getTypeColor(t)} me-1`}>{t}</span>
-                  ))}
+                  {item.pending?.length > 0 ? (
+                    <ul className="mb-0">
+                      {item.pending.map((task, i) => (
+                        <li key={i}>{task}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span className="text-muted">—</span>
+                  )}
+                </td>
+                <td>
+                  {item.completed?.length > 0 ? (
+                    <ul className="mb-0">
+                      {item.completed.map((task, i) => (
+                        <li key={i}>{task}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <span className="text-muted">—</span>
+                  )}
                 </td>
               </tr>
             ))}
