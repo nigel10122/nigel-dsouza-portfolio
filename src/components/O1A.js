@@ -86,7 +86,7 @@ const O1A = () => {
   };
 
   return (
-    <section id="extraordinary-abilities" style={{ padding: '3rem 2rem', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
+    <section id="extraordinary-abilities" style={{ marginTop: "2rem", padding: '3rem 2rem', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
       <h1 className="text-center mb-5">Extraordinary Abilities Requirements (O1-A Portfolio)</h1>
 
       <div className="container mb-5">
