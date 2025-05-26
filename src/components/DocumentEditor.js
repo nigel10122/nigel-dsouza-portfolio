@@ -137,7 +137,7 @@ const DocumentEditorPage = () => {
             rel="noopener noreferrer"
             download
           >
-            ⬇️ Download Proof ZIP
+            ⬇️ Download Evidence Reports
           </a>
         )}
         </div> 
