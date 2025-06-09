@@ -51,7 +51,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "postbuild": "cp public/_headers build/_headers"
+    "postbuild": "cp public/_headers build/_headers && cp public/_redirects build/_redirects"
   },
   "eslintConfig": {
     "extends": [

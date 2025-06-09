@@ -16,6 +16,9 @@ import Authorship from './components/Authorship';
 import DocumentEditor from './components/DocumentEditor';
 import MediaCoverage from './components/MediaCoverage';
 import LettersofRecomendation from './components/Lor';
+import Awards from './components/Awards';
+import CriticalRole from './components/CriticalRole';
+import Judge from './components/Judge';
 
 const MainContent = () => {
   const location = useLocation();
@@ -57,6 +60,9 @@ const MainContent = () => {
   <Route exact path="/authorship" component={Authorship} />
   <Route exact path="/media-coverage" component={MediaCoverage} />
   <Route exact path="/lors" component={LettersofRecomendation} />
+  <Route exact path="/awards" component={Awards} />
+  <Route exact path="/employment" component={CriticalRole} />
+  <Route exact path="/judging" component={Judge} />
   <Route path="/extraordinary" component={O1A} />
 </Switch>
 
