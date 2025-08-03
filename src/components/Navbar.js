@@ -142,11 +142,11 @@ const Navbar = () => {
             </li>
 
             {/* Always visible route */}
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <RouterLink to="/extraordinary" className="nav-link">
                 Extraordinary-Abilities
               </RouterLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

@@ -63,7 +63,7 @@ const MainContent = () => {
   <Route exact path="/awards" component={Awards} />
   <Route exact path="/employment" component={CriticalRole} />
   <Route exact path="/judging" component={Judge} />
-  <Route path="/extraordinary" component={O1A} />
+  {/* <Route path="/extraordinary" component={O1A} /> */}
 </Switch>
 
     </>
