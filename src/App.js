@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Particles from "react-particles-js";
+import Particles from "react-tsparticles";
 import { BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
@@ -63,7 +63,7 @@ const MainContent = () => {
   <Route exact path="/awards" component={Awards} />
   <Route exact path="/employment" component={CriticalRole} />
   <Route exact path="/judging" component={Judge} />
-  {/* <Route path="/extraordinary" component={O1A} /> */}
+  <Route path="/extraordinary" component={O1A} />
 </Switch>
 
     </>

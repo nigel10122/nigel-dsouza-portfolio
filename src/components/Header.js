@@ -1,5 +1,5 @@
 import React from "react";
-import Typed from "react-typed";
+import Typewriter from "typewriter-effect";
 import { Link } from "react-scroll";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,7 +15,7 @@ const Header = () => {
       <div className="main-info">
         <canvas></canvas>
         <h1>SOFTWARE DEVELOPMENT</h1>
-        <Typed
+        <Typewriter
           className="typed-text"
           strings={["Web Design", "Web Development", "Android Development", "Advance Automation Testing"]}
           typeSpeed={40}
